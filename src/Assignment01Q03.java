@@ -4,17 +4,29 @@ public class Assignment01Q03 {
         System.out.println("The first " + x + " Fibonacci numbers are:");
 
         ////////////////////////////////////////////////////////////////
-        // TODO: Replace this code with the correct Fibonacci sequence
-        ////////////////////////////////////////////////////////////////
-        /// ...
-        
+        // 
+        int fib1 = 1;
+        int fib2 = 1;
+        int current = 1;
         int numOdd = 0;
-        for (int i = 0; i < x; i++) {
-            System.out.print(i);
+        for (int i = 0; i < x; i++){
+            if(i == 0 || i == 1){
+                current = 1;
+            }else{
+                current = fib1+fib2;
+                fib1 = fib2;
+                fib2 = current;
+            }
+            if (current % 2 != 0){numOdd++;}
+            System.out.print(current);
             if (i < x - 1) 
                 System.out.print(" "); // Make sure we don't print a trailing space
         }
         System.out.println();
+    
+        
+        
+        
         
         ////////////////////////////////////////////////////////////////
         

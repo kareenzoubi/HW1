@@ -3,7 +3,39 @@ import java.util.Arrays;
 public class Assignment01Q04 {
 
     public static int[] shiftArrayCyclic(int[] array, int move, char direction) {
-        // TODO: implement
+        if ((direction != 'R' && direction != 'L') || array.length <= 1 || move == 0) {
+            return array; //מקרה קצה
+        }
+
+        // if move is negative we flip the direction and act as if move is positive
+        if (move < 0) {
+            move = -move;
+            if (direction == 'R') {
+                direction = 'L';
+            } else {
+                direction = 'R';
+            }
+        }
+
+        // if move is larger than the array length we use modulo 
+        move = move % array.length;
+
+        // shifting one step at a time
+        for (int step = 0; step < move; step++) {
+            if (direction == 'R') { //if we're shifting ימינה  we need to just give each cell the value before it and for the first cell we give the last value 
+                int last = array[array.length - 1];
+                for (int i = array.length - 1; i > 0; i--) {
+                    array[i] = array[i - 1];
+                }
+                array[0] = last;
+            } else { //this is the other case, same concept but we're actually moving backwords
+                int first = array[0];
+                for (int i = 0; i < array.length - 1; i++) {
+                    array[i] = array[i + 1];
+                }
+                array[array.length - 1] = first;
+            }
+        }
         return array;
     }
 
